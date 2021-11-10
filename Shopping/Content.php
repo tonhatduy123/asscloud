@@ -28,14 +28,14 @@ include_once("connection.php");
                         <div class="product-carousel">
                            <?php
 
-		  				   	$result = mysqli_query($conn, "SELECT * FROM product" );
+		  				   	$result = pg_query($conn, "SELECT * FROM product" );
 			
 			                if (!$result) { 
-                                die('Invalid query: ' . mysqli_error($conn));
+                                die('Invalid query: ' . pg_error($conn));
                             }
 		
 			            
-			                while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+			                while($row = pg_fetch_array($result, NULL,pg_ASSOC)){
 				            ?>
 				            
                             <div class="single-product">
@@ -46,11 +46,11 @@ include_once("connection.php");
                                     </div>
                                 </div>
                                 
-                                <h2><a href="?page=quanly_chitietsanpham&ma=<?php echo  $row['Product_ID']?>"><?php echo  $row['Product_Name' ]?></a>
+                                <h2><a href="?page=quanly_chitietsanpham&ma=<?php echo  $row['product_id']?>"><?php echo  $row['product_name' ]?></a>
                                 </h2>
                                     
                                 <div class="product-carousel-price">
-                                    <ins><?php echo  $row['Price']?>,0$</ins> 
+                                    <ins><?php echo  $row['price']?>,0$</ins> 
                                 </div> 
                             </div>
                 

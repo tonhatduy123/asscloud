@@ -42,14 +42,14 @@ if(isset($_POST['btnRegister'])){
     else{
         include_once("connection.php");
         $pass = md5($pass1);
-        $sq ="SELECT * FROM customer WHERE Username='$us' OR email='$email'";
-        $res = mysqli_query($conn,$sq);
-        if(mysqli_num_rows($res)==0)
+        $sq ="SELECT * FROM customer WHERE username='$us' OR email='$email'";
+        $res = pg_query($conn,$sq);
+        if(pg_num_rows($res)==0)
         {
-            mysqli_query($conn, "INSERT INTO customer (Username, Password,Custname,gender,Address,telephone,email,
+            pg_query($conn, "INSERT INTO customer (username, password,custname,gender,address,telephone,email,
             CusDate,CusMonth,CusYear,SSN,ActiveCode,state)
             VALUES ('$us', '$pass', '$fullname', $sex, '$address', '$tel', '$email', $date, $month, $year, '', '', 0)") 
-            or die(mysqli_error($conn));
+            or die(pg_error($conn));
                echo "You have registered successfully";
         }
     
@@ -66,7 +66,7 @@ if(isset($_POST['btnRegister'])){
 						    
                             <label for="txtTen" class="col-sm-2 control-label">Username(*):  </label>
 							<div class="col-sm-10">
-							      <input type="text" name="txtUsername" id="txtUsername" class="form-control" placeholder="Username" value="<?php if(isset ($us)) echo $us?>"/>
+							      <input type="text" name="txtUsername" id="txtUsername" class="form-control" placeholder="username" value="<?php if(isset ($us)) echo $us?>"/>
 							</div>
                       </div>  
                       
